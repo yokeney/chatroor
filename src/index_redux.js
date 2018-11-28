@@ -17,3 +17,10 @@ export function DelGun(){
     return {type:DEL}
 
 }
+export function AddGunAsync(){
+    return dispatch=>{
+        setTimeout(()=>{
+            dispatch(AddGun())
+        },2000)
+    }
+}
