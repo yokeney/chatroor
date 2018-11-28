@@ -1,12 +1,11 @@
-import React,{Component} from "react";
- export default class Aa extends Component{
- constructor(){
-     super();
-
-     }
-     render(){
-         return (
-             <div>aa</div>
-         )
-     }
- }
+import React from "react";
+import ReactDom from 'react-dom';
+import App from './App';
+import {createStore} from 'redux';
+import {counter} from './index_redux.js'
+const store=createStore(counter)
+function render(){
+    ReactDom.render(<App store={store}/>,document.getElementById('root'))
+}
+render();
+store.subscribe(render);
