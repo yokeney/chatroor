@@ -2,6 +2,12 @@ import React,{Component} from "react";
 import {Button} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {AddGun,DelGun,AddGunAsync} from './index_redux'
+@connect(
+    //你要state什么属性放到props
+    state=>({nmu:state}),
+    //你要什么方法放到props
+    {AddGun,DelGun,AddGunAsync}
+)
   class App extends Component{
      render(){
          return (
@@ -14,9 +20,5 @@ import {AddGun,DelGun,AddGunAsync} from './index_redux'
          )
      }
  }
- const mapStatetoProps=(state)=>{
-     return {num:state}
- }
- const actionCreators={AddGun,DelGun,AddGunAsync};
- App=connect(mapStatetoProps,actionCreators)(App)
+
  export default App
