@@ -1,6 +1,7 @@
 import React,{Component} from "react";
 import Logo from '../../component/logo/logo.js'
 import {List,InputItem,WingBlank,Button,WhiteSpace} from 'antd-mobile'
+import AuthRoute from '../../component/authroute/authroute.js'
   class Login extends Component{
       constructor(){
           super();
@@ -12,6 +13,7 @@ import {List,InputItem,WingBlank,Button,WhiteSpace} from 'antd-mobile'
      render(){
          return (
             <div>
+                <AuthRoute></AuthRoute>
                 <Logo />
                 <WingBlank>
                     <List>
