@@ -12,24 +12,24 @@ const User=mongoose.model('user',new mongoose.Schema({
     age: {type:Number,require:true}
 }))
 //新增数据
-// User.create({
-//     name:'yssoke',
-//     age:09
-// },(err,res)=>{
-//     if(!err){
-//         console.log(res);
-//     }
-//     else{
-//         console.log(err);
-//     }
-// })
+User.create({
+    name:'yssoke',
+    age:04
+},(err,res)=>{
+    if(!err){
+        console.log(res);
+    }
+    else{
+        console.log(err);
+    }
+})
 
 const app=express();
 app.get('/',(req,res)=>{
     res.send("<h1>Helloa</h1>")
 })
 app.get("/data",(req,res)=>{
-    User.findOne({},(err,doc)=>{
+    User.findOne({age:'9'},(err,doc)=>{
         res.json(doc)
     })
 })
