@@ -1,24 +1,25 @@
-import React,{Component} from "react";
-import {Button} from 'antd-mobile'
-import {connect} from 'react-redux'
-import {AddGun,DelGun,AddGunAsync} from './index_redux'
-@connect(
-    //你要state什么属性放到props
-    state=>({nmu:state}),
-    //你要什么方法放到props
-    {AddGun,DelGun,AddGunAsync}
-)
-  class App extends Component{
-     render(){
-         return (
-             <div>
-                 <h1>现在有{this.props.num}把</h1>
-                 <Button type="primary" onClick={this.props.AddGun}>加</Button>
-                 <Button type="danger" onClick={this.props.DelGun}>减</Button>
-                 <Button type="danger" onClick={this.props.AddGunAsync}>减</Button>
-             </div>
-         )
-     }
- }
+import React from 'react'
+import { connect } from 'react-redux'
+import { addGun, removeGun, addGunAsync } from './index.redux'
 
- export default App
+@connect(
+	// 你要state什么属性放到props里
+	state=>({num:state.counter}),
+	// 你要什么方法，放到props里，自动dispatch
+	{ addGun, removeGun, addGunAsync }
+)
+class App extends React.Component{
+	render(){
+		return (
+			<div>
+				<h1>现在有机枪{this.props.num}把</h1>
+				<button onClick={this.props.addGun}>申请武器</button>				
+				<button onClick={this.props.removeGun}>上交武器</button>				
+				<button onClick={this.props.addGunAsync}>拖两天再给</button>				
+			</div>
+		)
+	}
+}
+
+
+export default App
