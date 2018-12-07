@@ -7,7 +7,7 @@ import {List,InputItem,WingBlank,Button,WhiteSpace} from 'antd-mobile'
           this.register=this.register.bind(this);
           }
           register(){
-              this.props.history('./register')
+              this.props.history.push('./register')
           }
      render(){
          return (
