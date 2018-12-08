@@ -1,18 +1,31 @@
 import React,{Component} from "react";
 import axios from 'axios';
- export default class AuthRoute extends Component{
+import {withRouter} from 'react-router-dom';
+@withRouter
+  class AuthRoute extends Component{
      componentDidMount(){
+         const publicList=['/login','/register'];
+         const pathname=this.props.location.pathname;
+         console.log(pathname);
+         if(publicList.indexOf(pathname)>-1){
+             return null
+         }
          // 获取用户信息
          // 是否登陆
          axios.get("/user/info").then((res)=>{
              if(res.status===200){
-                 console.log(res.data);
+                 if (res.data.code==0) {
+                 }
+                 else{
+                     this.props.history.push('/login');
+                 }
              }
          })
      }
      render(){
          return (
-                <p>chiose</p>
+                <p>chioseeee</p>
          )
      }
  }
+ export default AuthRoute

@@ -13,7 +13,6 @@ import AuthRoute from '../../component/authroute/authroute.js'
      render(){
          return (
             <div>
-                <AuthRoute></AuthRoute>
                 <Logo />
                 <WingBlank>
                     <List>
