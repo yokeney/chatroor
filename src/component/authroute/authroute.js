@@ -23,9 +23,7 @@ import {withRouter} from 'react-router-dom';
          })
      }
      render(){
-         return (
-                <p>chioseeee</p>
-         )
+         return null
      }
  }
  export default AuthRoute
