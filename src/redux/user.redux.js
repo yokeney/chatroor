@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {getRedirectPath} from '../util.js'
 const LOGINSUCCESS="LOGINSUCCESS";
+const LOAD_DATA='LOAD_DATA';
 const REGISTER_SUCCESS="REGISTER_SUCCESS";
 const ERROR_MSG="ERROR_MSG";
 const initState={
@@ -18,6 +19,8 @@ export function user(state=initState,action){
             return {...state,isAuth:true,redirectTo:getRedirectPath(action.payload),msg:'',...action.payload}
         case LOGINSUCCESS:
             return {...state,isAuth:true,redirectTo:getRedirectPath(action.payload),msg:'',...action.payload}
+        case LOAD_DATA:
+            return {...state,...action.payload}
         case ERROR_MSG:
             return {...state,isAuth:false,msg:action.msg}
         default:
@@ -32,6 +35,10 @@ function errorMsg(msg){
 }
 function loginSuccess(data){
     return {type:LOGINSUCCESS,payload:data}
+}
+export function loaddata(userinfo){
+    return {type:LOAD_DATA,payload:userinfo}
+
 }
 export function login({user,pwd}){
     if (!user||!pwd) {

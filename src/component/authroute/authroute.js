@@ -1,7 +1,13 @@
 import React,{Component} from "react";
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
+import {loaddata} from '../../redux/user.redux.js'
+import {connect} from 'react-redux'
 @withRouter
+@connect(
+    state=>state.user,
+    {loaddata}
+)
   class AuthRoute extends Component{
      componentDidMount(){
          const publicList=['/login','/register'];
@@ -15,6 +21,7 @@ import {withRouter} from 'react-router-dom';
          axios.get("/user/info").then((res)=>{
              if(res.status===200){
                  if (res.data.code==0) {
+                     this.props.loaddata(res.data.data)
                  }
                  else{
                      this.props.history.push('/login');
