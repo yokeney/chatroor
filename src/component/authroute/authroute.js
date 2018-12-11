@@ -12,7 +12,6 @@ import {connect} from 'react-redux'
      componentDidMount(){
          const publicList=['/login','/register'];
          const pathname=this.props.location.pathname;
-         console.log(pathname);
          if(publicList.indexOf(pathname)>-1){
              return null
          }
@@ -20,7 +19,7 @@ import {connect} from 'react-redux'
          // 是否登陆
          axios.get("/user/info").then((res)=>{
              if(res.status===200){
-                 if (res.data.code==0) {
+                 if (res.data.code===0) {
                      this.props.loaddata(res.data.data)
                  }
                  else{

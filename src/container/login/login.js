@@ -40,7 +40,7 @@ import {connect} from 'react-redux';
                         {this.props.msg?<p className="error">{this.props.msg}</p>:null}
                         <InputItem onChange={v=>this.handleChange("user",v)}>用户名</InputItem>
                         <WhiteSpace />
-                        <InputItem onChange={v=>this.handleChange("pwd",v)}>密码</InputItem>
+                        <InputItem type="password" onChange={v=>this.handleChange("pwd",v)}>密码</InputItem>
                     </List>
                     <Button type="primary" onClick={this.handleLogin}>登陆</Button>
                     <WhiteSpace />

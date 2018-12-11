@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 import Login from './container/login/login.js'
 import Register from './container/register/register.js'
 import { Provider } from 'react-redux'
+import Bossinfo from './container/bossinfo/bossinfo.js'
 import AuthRoute from './component/authroute/authroute.js'
 import {
 	BrowserRouter,
@@ -27,7 +28,7 @@ ReactDom.render(
 		<BrowserRouter>
         <div>
             <AuthRoute></AuthRoute>
-            <Route path="/boss" component={Boss}></Route>
+            <Route path="/bossinfo" component={Bossinfo}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/register" component={Register}></Route>
         </div>

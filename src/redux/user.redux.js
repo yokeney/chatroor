@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {getRedirectPath} from '../util.js'
 const LOGINSUCCESS="LOGINSUCCESS";
-const LOAD_DATA='LOAD_DATA';
+const LOAD_DATA='LOAD_DATA';//用户注册和登陆保存用户的信息
 const REGISTER_SUCCESS="REGISTER_SUCCESS";
 const ERROR_MSG="ERROR_MSG";
 const initState={
