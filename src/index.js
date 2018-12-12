@@ -31,11 +31,13 @@ ReactDom.render(
 		<BrowserRouter>
         <div>
         <AuthRoute></AuthRoute>
-            <Route path="/bossinfo" component={Bossinfo}></Route>
-            <Route path="/genuisinfo" component={Genuisinfo}></Route>
-            <Route path="/login" component={Login}></Route>
-            <Route path="/register" component={Register}></Route>
-            <Route  component={Dashboard}></Route>
+            <Switch>
+                <Route path="/bossinfo" component={Bossinfo}></Route>
+                <Route path="/genuisinfo" component={Genuisinfo}></Route>
+                <Route path="/login" component={Login}></Route>
+                <Route path="/register" component={Register}></Route>
+                <Route  component={Dashboard}></Route>
+            </Switch>
         </div>
 		</BrowserRouter>
 	</Provider>),
