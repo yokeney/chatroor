@@ -5,9 +5,11 @@ import thunk from 'redux-thunk'
 import Login from './container/login/login.js'
 import Register from './container/register/register.js'
 import { Provider } from 'react-redux'
+import 'antd-mobile/dist/antd-mobile.css';
 import Bossinfo from './container/bossinfo/bossinfo.js'
 import Genuisinfo from './container/genuisinfo/genuisinfo.js'
 import AuthRoute from './component/authroute/authroute.js'
+import Dashboard from './component/dashboard/dashboard.js'
 import {
 	BrowserRouter,
 	Route,
@@ -16,7 +18,7 @@ import {
 } from 'react-router-dom'
 import reducers from './reducer'
 import './config'
-import 'antd-mobile/dist/antd-mobile.css';
+import './index.js'
 const store = createStore(reducers, compose(
 	applyMiddleware(thunk),
 	window.devToolsExtension?window.devToolsExtension():f=>f
@@ -28,11 +30,12 @@ ReactDom.render(
 	(<Provider store={store}>
 		<BrowserRouter>
         <div>
-            <AuthRoute></AuthRoute>
+        <AuthRoute></AuthRoute>
             <Route path="/bossinfo" component={Bossinfo}></Route>
             <Route path="/genuisinfo" component={Genuisinfo}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/register" component={Register}></Route>
+            <Route  component={Dashboard}></Route>
         </div>
 		</BrowserRouter>
 	</Provider>),
