@@ -8,15 +8,13 @@ import Avatarselect from '../../component/avatar-selecor/avatar-selecor'
     state=>state.user,
     {update}
 )
- class Bossinfo extends Component{
+ class Genuisinfo extends Component{
      constructor(){
          super();
          this.handleChange=this.handleChange.bind(this);
          this.state={
              title:'',
-             company:'',
-             money:'',
-             money:'',
+             desc:'',
          }
      }
      handleChange(key,value){
@@ -27,22 +25,20 @@ import Avatarselect from '../../component/avatar-selecor/avatar-selecor'
      render(){
          const pathname=this.props.location.pathname;
          const redirect=this.props.redirectTo;
-         return(
+         return (
              <div>
              {redirect&&redirect!==pathname?<Redirect to={redirect} />:null}
-             <NavBar mode="dark">boss完善信息</NavBar>
+             <NavBar mode="dark">牛人完善信息</NavBar>
              <Avatarselect selectAvatar={(imgname)=>{
                  this.setState({
                      avatar:imgname
                  })
              }}></Avatarselect>
-             <InputItem onChange={v=>this.handleChange('title',v)}>招聘职位</InputItem>
-             <InputItem onChange={v=>this.handleChange('money',v)}>职业薪资</InputItem>
-             <InputItem onChange={v=>this.handleChange('company',v)}>公司</InputItem>
-             <TextareaItem rows={3}autoHeight title="职位要求"  onChange={v=>this.handleChange('desc',v)}>职位要求</TextareaItem>
+             <InputItem onChange={v=>this.handleChange('title',v)}>求职</InputItem>
+             <TextareaItem rows={3}autoHeight title="个人简介"  onChange={v=>this.handleChange('desc',v)}>职位要求</TextareaItem>
              <Button type="primary" onClick={()=>this.props.update(this.state)}>保存</Button>
              </div>
          )
      }
  }
-  export default Bossinfo
+  export default Genuisinfo

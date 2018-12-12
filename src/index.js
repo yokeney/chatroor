@@ -6,6 +6,7 @@ import Login from './container/login/login.js'
 import Register from './container/register/register.js'
 import { Provider } from 'react-redux'
 import Bossinfo from './container/bossinfo/bossinfo.js'
+import Genuisinfo from './container/genuisinfo/genuisinfo.js'
 import AuthRoute from './component/authroute/authroute.js'
 import {
 	BrowserRouter,
@@ -29,6 +30,7 @@ ReactDom.render(
         <div>
             <AuthRoute></AuthRoute>
             <Route path="/bossinfo" component={Bossinfo}></Route>
+            <Route path="/genuisinfo" component={Genuisinfo}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/register" component={Register}></Route>
         </div>

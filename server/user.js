@@ -12,12 +12,11 @@ Router.get('/list',function(req, res){
 })
 Router.post('/update',function(req,res){
     const userid=req.cookies.userid;
-    console.log(userid);
     if(!userid){
         return json.dumps({code:1})
     }
     const  body=req.body;
-    User.findOneAndUpdate(userid,body,function(err,doc){
+    User.findByIdAndUpdate(userid,body,function(err,doc){
         console.log(doc);
         const data=Object.assign({},{
             user:doc.user,
