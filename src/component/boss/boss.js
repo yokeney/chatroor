@@ -1,6 +1,12 @@
 import React,{Component} from "react";
 import {Card,WhiteSpace,WingBlank} from 'antd-mobile'
 import axios from 'axios';
+import {connect} from 'react-redux'
+import {getUserList} from '../../redux/chartuser.redux.js';
+@connect(
+    state=>state.chatuser,
+    {getUserList}
+)
   class Boss extends Component{
  constructor(){
      super();
@@ -9,22 +15,18 @@ import axios from 'axios';
         }
      }
      componentDidMount(){
-         axios.get('/user/list?type=genuis').then(res=>{
-             if(res.data.code===0){
-                 this.setState({data:res.data.data})
-             }
-         })
+         this.props.getUserList('genuis');
      }
      render(){
-         const data=this.state.data;
+         const data=this.props.userList;
          console.log(data);
          const CardHeader=Card.Header;
          const CardBody=Card.Body;
          return (
              <WingBlank>
                 {
-                    this.state.data.map(v=>(
-                        v.avatar?<Card style={{marginTop:10}}>
+                    this.props.userList.map(v=>(
+                        v.avatar?<Card style={{marginTop:12}}>
                         <CardHeader
                             key={v._id}
                             title={v.title}
