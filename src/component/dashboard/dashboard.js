@@ -1,11 +1,9 @@
 import React,{Component} from "react";
-import {Route} from "react-router-dom"
+import {Route,Switch} from "react-router-dom"
 import {connect} from 'react-redux';
 import {NavBar} from 'antd-mobile'
 import NavLink from '../navlink/index.js'
-function Boss(){
-    return <h1>Boss</h1>
-}
+import Boss from '../../component/boss/boss'
 function Genius(){
     return <h1>Genius</h1>
 }
@@ -34,7 +32,7 @@ function User(){
                  hide:user.type==="genius"
              },
              {
-                 path:'/genius',
+                 path:'/genuis',
                  text:'boss',
                  icon:'job',
                  title:'boss列表',
@@ -60,7 +58,15 @@ function User(){
          return (
             <div>
                 <NavBar mode='dard'>{navList.find(v=>v.path==pathname).title}</NavBar>
-                <h2>content</h2>
+                <div style={{marginTop:15}}>
+                    <Switch>
+                    {
+                        navList.map(v=>(
+                            <Route key={v.path} path={v.path} component={v.component} />
+                        ))
+                    }
+                    </Switch>
+                </div>
                 <NavLink data={navList}></NavLink>
             </div>
          )
