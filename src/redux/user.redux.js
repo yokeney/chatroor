@@ -3,6 +3,7 @@ import {getRedirectPath} from '../util.js'
 const AUTH_SUCCESS="AUTH_SUCCESS";
 const LOAD_DATA='LOAD_DATA';//用户注册和登陆保存用户的信息
 const ERROR_MSG="ERROR_MSG";
+const LAYOUT="LAYOUT";
 const initState={
     redirectTo:'',
     isAuth:'',
@@ -20,9 +21,19 @@ export function user(state=initState,action){
             return {...state,...action.payload}
         case ERROR_MSG:
             return {...state,isAuth:false,msg:action.msg}
+        case LAYOUT:
+            return {...initState,redirectTo:'/login'}
         default:
             return state
     }
+}
+export function layoutSubmit(){
+    return dispatch=>{
+        dispatch(layout())
+    }
+}
+function layout(){
+    return { type:LAYOUT}
 }
 function Auth_success(obj){
     const {pwd,...data}=obj;

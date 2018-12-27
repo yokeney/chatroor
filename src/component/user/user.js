@@ -2,12 +2,13 @@ import React,{Component} from "react";
 import {connect} from 'react-redux';
 import {Result,List,WhiteSpace,Modal} from 'antd-mobile'
 import browserCookie from 'browser-cookies'
+import {layoutSubmit} from '../../redux/user.redux'
 import './index.css'
+import {Redirect} from 'react-router-dom'
 @connect(
     state=>state.user,
-    {}
+    {layoutSubmit}
 )
-
 class User extends React.Component{
     constructor(){
         super();
@@ -25,7 +26,7 @@ class User extends React.Component{
     { text: 'OK',
       onPress: () => {
         browserCookie.erase('userid');
-        window.location.href=window.location.href;
+        this.props.layoutSubmit();
     } },
   ]);
   setTimeout(() => {
@@ -40,6 +41,7 @@ class User extends React.Component{
         const Item=List.Item;
         const Brief=Item.Brief;
         console.log(this.props);
+        const redirectTo=props.redirectTo;
         return props.user?(
             <div>
                 <Result
@@ -62,7 +64,7 @@ class User extends React.Component{
                     <Item onClick={this.handleLyout} className="layout">注销</Item>
                 </List>
             </div>
-        ):null
+        ):<Redirect to={redirectTo}></Redirect>
     }
 }
 export default User
