@@ -9,21 +9,17 @@ import {getUserList} from '../../redux/chartuser.redux.js';
     state=>state.chatuser,
     {getUserList}
 )
-  class Boss extends Component{
- constructor(){
-     super();
-     this.state={
-         data:[]
-        }
-     }
+  class Genius extends Component{
      componentDidMount(){
-         this.props.getUserList('genuis');
+         this.props.getUserList('boss');
      }
      render(){
          const data=this.props.userList;
+         const CardHeader=Card.Header;
+         const CardBody=Card.Body;
          return (
-            <Usercard userList={this.props.userList}></Usercard>
+             <Usercard userList={this.props.userList}></Usercard>
          )
      }
  }
- export default Boss
+ export default Genius

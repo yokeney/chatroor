@@ -12,7 +12,6 @@ export function chatuser(state=initState,action){
             return {...state,userList:action.payload}
         default:
             return state
-
     }
 }
 export function getUserList(type){

@@ -33,7 +33,6 @@ function errorMsg(msg){
 }
 export function loaddata(userinfo){
     return {type:LOAD_DATA,payload:userinfo}
-
 }
 export function update(data){
     return dispatch=>{

@@ -4,9 +4,8 @@ import {connect} from 'react-redux';
 import {NavBar} from 'antd-mobile'
 import NavLink from '../navlink/index.js'
 import Boss from '../../component/boss/boss'
-function Genius(){
-    return <h1>Genius</h1>
-}
+import Genius from '../../component/genius/genius'
+
 function Msg(){
     return <h1>Msg</h1>
 }
