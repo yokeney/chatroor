@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {Route,Switch} from "react-router-dom"
+import {Route,Switch,Redirect} from "react-router-dom"
 import {connect} from 'react-redux';
 import {NavBar} from 'antd-mobile'
 import NavLink from '../navlink/index.js'
@@ -51,6 +51,7 @@ function Msg(){
              }
          ]
          const {pathname}=this.props.location;
+         console.log(pathname);
          return (
             <div>
                 <NavBar mode='dard'>{navList.find(v=>v.path==pathname).title}</NavBar>

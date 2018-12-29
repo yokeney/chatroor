@@ -9,7 +9,9 @@ import 'antd-mobile/dist/antd-mobile.css';
 import Bossinfo from './container/bossinfo/bossinfo.js'
 import Genuisinfo from './container/genuisinfo/genuisinfo.js'
 import AuthRoute from './component/authroute/authroute.js'
+import './index.css'
 import Dashboard from './component/dashboard/dashboard.js'
+import Chat from './component/chat/chat'
 import {
 	BrowserRouter,
 	Route,
@@ -36,6 +38,7 @@ ReactDom.render(
                 <Route path="/genuisinfo" component={Genuisinfo}></Route>
                 <Route path="/login" component={Login}></Route>
                 <Route path="/register" component={Register}></Route>
+                <Route path="/chat/:uid" component={Chat}></Route>
                 <Route  component={Dashboard}></Route>
             </Switch>
         </div>

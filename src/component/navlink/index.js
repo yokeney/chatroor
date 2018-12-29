@@ -1,7 +1,6 @@
 import React,{Component} from "react";
 import {TabBar} from 'antd-mobile'
 import PropTypes from 'prop-types';
-import './index.css'
 import {withRouter} from 'react-router-dom'
 @withRouter
  class NavLink extends Component{
