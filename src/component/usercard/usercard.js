@@ -11,7 +11,8 @@ class Usercard extends React.Component{
         userList:PropTypes.array.isRequired
     }
     handleClick(v){
-        this.props.history.push(`/chat/${v.user}`)
+        console.log(v);
+        this.props.history.push(`/chat/${v._id}`)
     }
     render(){
         const CardHeader=Card.Header;

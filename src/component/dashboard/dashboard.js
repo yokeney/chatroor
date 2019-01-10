@@ -51,11 +51,11 @@ function Msg(){
              }
          ]
          const {pathname}=this.props.location;
-         console.log(pathname);
+         // console.log(pathname);
          return (
             <div>
                 <NavBar mode='dard'>{navList.find(v=>v.path==pathname).title}</NavBar>
-                <div style={{marginTop:15}}>
+                <div style={{marginTop:15,zIndex:9999}}>
                     <Switch>
                     {
                         navList.map(v=>(
