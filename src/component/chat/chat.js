@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {List,InputItem,NavBar} from 'antd-mobile'
+import {List,InputItem,NavBar,Icon} from 'antd-mobile'
 import {connect} from 'react-redux';
 import {getMsgList,sendMsg,recvMsg} from '../../redux/chat.redux'
 @connect(
@@ -15,8 +15,10 @@ class Chat extends Component{
         }
     }
     componentDidMount(){
-        this.props.getMsgList();
-        this.props.recvMsg();
+        if (!this.props.chat.chatmsg.length) {
+            this.props.getMsgList();
+            this.props.recvMsg();
+        }
     }
   handleSubmit(){
       const from=this.props.user._id;
@@ -26,23 +28,33 @@ class Chat extends Component{
       this.setState({text:''});
       }
  render(){
-     const user=this.props.match.params.uid;
+     const userid=this.props.match.params.uid;
      const Item=List.Item;
+     const users=this.props.chat.users;
+     if (!users[userid]) {
+         return null
+     }
      return (
      <div id="chat-page">
-     <NavBar>
-        {user}
+     <NavBar mode="dark" icon={<Icon type="left" />}
+     onLeftClick={()=>{
+         this.props.history.goBack()
+     }}
+     >
+        {users[userid].name}
      </NavBar>
              {this.props.chat.chatmsg.map((v)=>{
-                 return v.from==user?(
+                 const avatar=require(`../img/${users[v.from].avatar}.png`);
+                 console.log(v.from);
+                 return v.from==userid?(
                      <List key={v._id}>
-                        <Item className="chat-user"  extra={'avatar'}>
+                        <Item className="chat-user"  extra={<img src={avatar}/>}>
                             {v.content}
                         </Item>
                      </List>
                  ):(
                      <List key={v._id}>
-                        <Item  className="chat-me" >
+                        <Item  className="chat-me" thumb={avatar}>
                             {v.content}
                         </Item>
                      </List>
