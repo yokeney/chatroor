@@ -39,7 +39,7 @@ ReactDom.render(
                 <Route path="/login" component={Login}></Route>
                 <Route path="/register" component={Register}></Route>
                 <Route path="/chat/:uid" component={Chat}></Route>
-                <Route  component={Dashboard}></Route>
+                <Route component={Dashboard}></Route>
             </Switch>
         </div>
 		</BrowserRouter>

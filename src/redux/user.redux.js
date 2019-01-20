@@ -89,5 +89,4 @@ export function register({user,pwd,repwd,type}){
             }
         })
     }
-
 }

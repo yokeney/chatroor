@@ -1,7 +1,8 @@
 import React,{Component} from "react";
-import {List,InputItem,NavBar,Icon} from 'antd-mobile'
+import {List,InputItem,NavBar,Icon,Grid} from 'antd-mobile'
 import {connect} from 'react-redux';
 import {getMsgList,sendMsg,recvMsg} from '../../redux/chat.redux'
+import {getChatId} from '../../util.js'
 @connect(
     state=>state,
     {getMsgList,sendMsg,recvMsg}
@@ -12,6 +13,7 @@ class Chat extends Component{
         this.state={
             text:'',
             msg:[],
+            showEmoji:false
         }
     }
     componentDidMount(){
@@ -19,6 +21,14 @@ class Chat extends Component{
             this.props.getMsgList();
             this.props.recvMsg();
         }
+        setTimeout(function(){
+            window.dispatchEvent(new Event('resize'))
+        },0)
+    }
+    FixEmoji(){
+        setTimeout(function(){
+            window.dispatchEvent(new Event('resize'))
+        },0)
     }
   handleSubmit(){
       const from=this.props.user._id;
@@ -28,12 +38,20 @@ class Chat extends Component{
       this.setState({text:''});
       }
  render(){
+     const emoji='😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 😐 😑 😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 😐 😑 😶 😶 😏 😣 😥 😮 😯 😪 😫 😴 😌 😛 😜 😝 😒 😓 😔 😕'
+                .split(' ')
+                .filter(v=>v)
+                .map(v=>({
+                    text:v
+                }))
      const userid=this.props.match.params.uid;
      const Item=List.Item;
      const users=this.props.chat.users;
      if (!users[userid]) {
          return null
      }
+     const chatid=getChatId(userid,this.props.user._id)
+     const chatmsgs=this.props.chat.chatmsg.filter(v=>v.chatid===chatid);
      return (
      <div id="chat-page">
      <NavBar mode="dark" icon={<Icon type="left" />}
@@ -43,10 +61,9 @@ class Chat extends Component{
      >
         {users[userid].name}
      </NavBar>
-             {this.props.chat.chatmsg.map((v)=>{
+             {chatmsgs.map((v)=>{
                  const avatar=require(`../img/${users[v.from].avatar}.png`);
-                 console.log(v.from);
-                 return v.from==userid?(
+                 return v.to==userid?(
                      <List key={v._id}>
                         <Item className="chat-user"  extra={<img src={avatar}/>}>
                             {v.content}
@@ -69,10 +86,25 @@ class Chat extends Component{
                     onChange={(v)=>{
                         this.setState({text:v})
                     }}
-                    extra={<span onClick={()=>this.handleSubmit()}>发送</span>}
+                    extra={
+                        <div>
+                            <span style={{marginRight:15}} onClick={()=>{this.setState({showEmoji:!this.state.showEmoji}); this.FixEmoji()} }>😃</span>
+                            <span onClick={()=>this.handleSubmit()}>发送</span>
+                        </div>
+                    }
                 >
                 </InputItem>
             </List>
+            {this.state.showEmoji?
+                <Grid data={emoji} columnNum={9} carouselMaxRow={4} isCarousel={true} onClick={
+                    el=>{
+                        this.setState({
+                            text:this.state.text+el.text
+                        })
+                    }
+                }></Grid>
+                :null
+            }
             </div>
         </div>
     </div>

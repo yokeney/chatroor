@@ -36,7 +36,6 @@ import PropTypes from 'prop-types';
                 }}
                 />
              </List>
-
              </div>
          )
      }
