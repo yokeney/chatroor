@@ -21,7 +21,7 @@ class Usercard extends React.Component{
             <WingBlank>
                {
                    this.props.userList.map(v=>(
-                       v.avatar?<Card style={{marginTop:12,zIndex:999}}
+                       v.avatar?<Card key={v._id} style={{marginTop:12,zIndex:999}}
                         onClick={()=>this.handleClick(v)}
                         >
                        <CardHeader

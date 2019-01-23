@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 )
 @withRouter
  class NavLink extends Component{
-     static propTypes={
+     static PropTypes={
          data:PropTypes.array.isRequired
      }
  constructor(){

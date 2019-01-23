@@ -38,7 +38,7 @@ class Chat extends Component{
       this.setState({text:''});
       }
  render(){
-     const emoji='😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 😐 😑 😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 😐 😑 😶 😶 😏 😣 😥 😮 😯 😪 😫 😴 😌 😛 😜 😝 😒 😓 😔 😕'
+     const emoji=' 😁 😂 🎡 🎢 🎠 ⛲️ 😃 😄 👩‍ 👩‍ 👩‍ 👩‍ 👩‍ 👨‍ 👨‍ 👨 👩 👨‍ 👨‍ 👨‍ 😅 😆 😉 😊 😋 😎 😍 😘 😚 😐 😶 😶 😏 😣 😥 😪 😫 😌 😜 😝 😒 😓 😔 '
                 .split(' ')
                 .filter(v=>v)
                 .map(v=>({
@@ -88,7 +88,7 @@ class Chat extends Component{
                     }}
                     extra={
                         <div>
-                            <span style={{marginRight:15}} onClick={()=>{this.setState({showEmoji:!this.state.showEmoji}); this.FixEmoji()} }>😃</span>
+                            <span style={{marginRight:15}} onClick={()=>{this.setState({showEmoji:!this.state.showEmoji});this.FixEmoji() } }>😃</span>
                             <span onClick={()=>this.handleSubmit()}>发送</span>
                         </div>
                     }
