@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {List} from 'antd-mobile';
+import {List,Badge} from 'antd-mobile';
 import {connect} from 'react-redux';
 @connect(
     state=>state
@@ -21,20 +21,35 @@ import {connect} from 'react-redux';
              msgGroup[v.chatid].push(v);
          })
          // Object.values把对象的值拼成一个数组
-         const chatList=Object.values(msgGroup);
+         const chatList=Object.values(msgGroup).sort((a,b)=>{
+             const a_last=this.getLast(a).create_time;
+             const b_last=this.getLast(b).create_time;
+             console.log(a_last-b_last);
+             return a_last-b_last
+         });
+         console.log(chatList);
+         // 1.eslint
+         // 2.react1.6特有的错误处理机制
+         // 3react性能优化
          return (
             <div>
                     {chatList.map(v=>{
                         const liastItem=this.getLast(v);
                         const targetid=v[0].from==userid?v[0].to:v[0].from;
-                        console.log(targetid);
+                        const unread=v.filter(v=>!v.read&&v.to==userid).length
                         if (!this.props.chat.users[targetid]) {
                             return null
                         }
                         return (
                             <List >
                                 <Item
+                                style={{zIndex:9999}}
+                                 extra={<Badge text={unread}></Badge>}
                                  key={liastItem.create_time}
+                                 arrow="horizontal"
+                                 onClick={()=>{
+                                     this.props.history.push(`/chat/${targetid}`)
+                                 }}
                                  thumb={require(`../img/${this.props.chat.users[targetid].avatar}.png`)}
                                 >
                                     {liastItem.content}
