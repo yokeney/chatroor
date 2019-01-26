@@ -1,6 +1,4 @@
 import React,{Component} from "react";
-import {Card,WhiteSpace,WingBlank} from 'antd-mobile'
-import axios from 'axios';
 import {connect} from 'react-redux'
 import Usercard from '../usercard/usercard.js'
 import {getUserList} from '../../redux/chartuser.redux.js';
@@ -20,7 +18,6 @@ import {getUserList} from '../../redux/chartuser.redux.js';
          this.props.getUserList('genuis');
      }
      render(){
-         const data=this.props.userList;
          return (
             <Usercard userList={this.props.userList}></Usercard>
          )

@@ -5,7 +5,6 @@ const model = require('./model')
 const User = model.getModel('user')
 const Chat = model.getModel('chat')
 const _filter = {'pwd':0,'__v':0}
-
 Router.get('/list',function(req, res){
 	// User.remove({},function(e,d){})
 	const {type}=req.query;
@@ -26,7 +25,22 @@ Router.get('/getmsgList',function(req, res){
             }
         })
     })
-
+})
+Router.post('/readMsg',function(req,res){
+	const userid=req.cookies.userid;
+	const {from}=req.body;
+	console.log(userid,from);
+	Chat.update(
+		{from,to:userid},
+		{'$set':{read:true}},
+		{'multi':true},
+		function(err,doc){
+		console.log(doc);
+		if (!err) {
+			return res.json({code:0,num:doc.nModified})
+		}
+		return res.json({code:1,msg:'修改失败'})
+	})
 })
 Router.post('/update',function(req,res){
     const userid=req.cookies.userid;
@@ -39,7 +53,6 @@ Router.post('/update',function(req,res){
         const data=Object.assign({},{
             user:doc.user,
             type:doc.type,
-
         },body)
         return res.json({code:0,data})
     })

@@ -11,9 +11,6 @@ import {connect} from 'react-redux'
      static PropTypes={
          data:PropTypes.array.isRequired
      }
- constructor(){
-     super();
-     }
      render(){
          const navList=this.props.data.filter(v=>!v.hide);
          const {pathname} =this.props.location;
@@ -21,7 +18,7 @@ import {connect} from 'react-redux'
              <TabBar>
                  {navList.map(v=>(
                      <TabBar.Item
-                         badge={v.path=='/msg'?this.props.unread:0}
+                         badge={v.path==='/msg'?this.props.unread:0}
                          key={v.path}
                          title={v.text}
                          icon={{uri: require(`./img/${v.icon}.png`)}}

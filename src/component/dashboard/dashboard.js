@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {Route,Switch,Redirect} from "react-router-dom"
+import {Route,Switch} from "react-router-dom"
 import {connect} from 'react-redux';
 import {NavBar} from 'antd-mobile'
 import NavLink from '../navlink/index.js'
@@ -19,9 +19,6 @@ import {getMsgList,recvMsg} from '../../redux/chat.redux'
              this.props.getMsgList();
              this.props.recvMsg();
          }
-     }
- constructor(){
-     super();
      }
      render(){
          const user=this.props.user
@@ -61,7 +58,7 @@ import {getMsgList,recvMsg} from '../../redux/chat.redux'
          // console.log(pathname);
          return (
             <div>
-                <NavBar mode='dard'>{navList.find(v=>v.path==pathname).title}</NavBar>
+                <NavBar mode='dard'>{navList.find(v=>v.path===pathname).title}</NavBar>
                 <div style={{marginTop:15,zIndex:9999}}>
                     <Switch>
                     {

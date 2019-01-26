@@ -1,11 +1,11 @@
 import React,{Component} from "react";
 import {List,InputItem,NavBar,Icon,Grid} from 'antd-mobile'
 import {connect} from 'react-redux';
-import {getMsgList,sendMsg,recvMsg} from '../../redux/chat.redux'
+import {getMsgList,sendMsg,recvMsg,readMsg} from '../../redux/chat.redux'
 import {getChatId} from '../../util.js'
 @connect(
     state=>state,
-    {getMsgList,sendMsg,recvMsg}
+    {getMsgList,sendMsg,recvMsg,readMsg}
 )
 class Chat extends Component{
     constructor(){
@@ -24,6 +24,10 @@ class Chat extends Component{
         setTimeout(function(){
             window.dispatchEvent(new Event('resize'))
         },0)
+    }
+    componentWillUnmount(){
+        const to=this.props.match.params.uid;
+        this.props.readMsg(to);
     }
     FixEmoji(){
         setTimeout(function(){
@@ -63,9 +67,9 @@ class Chat extends Component{
      </NavBar>
              {chatmsgs.map((v)=>{
                  const avatar=require(`../img/${users[v.from].avatar}.png`);
-                 return v.to==userid?(
+                 return v.to===userid?(
                      <List key={v._id}>
-                        <Item className="chat-user"  extra={<img src={avatar}/>}>
+                        <Item className="chat-user"  extra={<img src={avatar} alt=""/>}>
                             {v.content}
                         </Item>
                      </List>
@@ -88,7 +92,8 @@ class Chat extends Component{
                     }}
                     extra={
                         <div>
-                            <span style={{marginRight:15}} onClick={()=>{this.setState({showEmoji:!this.state.showEmoji});this.FixEmoji() } }>😃</span>
+                            <span style={{marginRight:15}}
+                             onClick={()=>{this.setState({showEmoji:!this.state.showEmoji});this.FixEmoji() } }>😃</span>
                             <span onClick={()=>this.handleSubmit()}>发送</span>
                         </div>
                     }

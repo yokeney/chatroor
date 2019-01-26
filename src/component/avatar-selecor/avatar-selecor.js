@@ -1,6 +1,5 @@
 import React,{Component} from "react";
 import {Grid,List} from 'antd-mobile'
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
  export default class Avatarselect extends Component{
      static PropTypes={

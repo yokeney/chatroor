@@ -5,9 +5,6 @@ import {connect} from 'react-redux';
     state=>state
 )
  class NavLink extends Component{
- constructor(){
-     super();
-     }
      getLast(arr){
          return arr[arr.length-1]
      }
@@ -24,10 +21,8 @@ import {connect} from 'react-redux';
          const chatList=Object.values(msgGroup).sort((a,b)=>{
              const a_last=this.getLast(a).create_time;
              const b_last=this.getLast(b).create_time;
-             console.log(a_last-b_last);
              return a_last-b_last
          });
-         console.log(chatList);
          // 1.eslint
          // 2.react1.6特有的错误处理机制
          // 3react性能优化
@@ -35,8 +30,8 @@ import {connect} from 'react-redux';
             <div>
                     {chatList.map(v=>{
                         const liastItem=this.getLast(v);
-                        const targetid=v[0].from==userid?v[0].to:v[0].from;
-                        const unread=v.filter(v=>!v.read&&v.to==userid).length
+                        const targetid=v[0].from===userid?v[0].to:v[0].from;
+                        const unread=v.filter(v=>!v.read&&v.to===userid).length
                         if (!this.props.chat.users[targetid]) {
                             return null
                         }

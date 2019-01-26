@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React from "react";
 import {connect} from 'react-redux';
 import {Result,List,WhiteSpace,Modal} from 'antd-mobile'
 import browserCookie from 'browser-cookies'

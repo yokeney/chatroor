@@ -15,8 +15,7 @@ import Chat from './component/chat/chat'
 import {
 	BrowserRouter,
 	Route,
-	Redirect,
-	Switch
+ 	Switch
 } from 'react-router-dom'
 import reducers from './reducer'
 import './config'
@@ -25,9 +24,6 @@ const store = createStore(reducers, compose(
 	applyMiddleware(thunk),
 	window.devToolsExtension?window.devToolsExtension():f=>f
 ))
-function Boss(){
-    return <h1>11</h1>
-}
 ReactDom.render(
 	(<Provider store={store}>
 		<BrowserRouter>

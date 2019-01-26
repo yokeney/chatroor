@@ -1,12 +1,10 @@
 import React,{Component} from "react";
 import Logo from '../../component/logo/logo.js'
 import {List,InputItem,WingBlank,Button,WhiteSpace} from 'antd-mobile'
-import AuthRoute from '../../component/authroute/authroute.js'
 import {login} from '../../redux/user.redux.js';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import imoocForm from '../../component/imooc.form/imooc.form.js'
-
 //属性代理
 // function WrapperHello(Comp){
 //     class WrapComp extends Comp{

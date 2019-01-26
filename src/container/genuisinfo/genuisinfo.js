@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {NavBar,Icon,InputItem,TextareaItem,Button} from 'antd-mobile'
+import {NavBar,InputItem,TextareaItem,Button} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {update} from '../../redux/user.redux'
