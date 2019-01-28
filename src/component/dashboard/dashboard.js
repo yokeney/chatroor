@@ -8,7 +8,7 @@ import Genius from '../../component/genius/genius'
 import User from '../../component/user/user'
 import Msg from '../../component/msg/Msg'
 import {getMsgList,recvMsg} from '../../redux/chat.redux'
-
+import QueueAnim from 'rc-queue-anim';
 @connect(
     state=>state,
     {getMsgList,recvMsg}
@@ -61,11 +61,13 @@ import {getMsgList,recvMsg} from '../../redux/chat.redux'
                 <NavBar mode='dard'>{navList.find(v=>v.path===pathname).title}</NavBar>
                 <div style={{marginTop:15,zIndex:9999}}>
                     <Switch>
-                    {
-                        navList.map(v=>(
-                            <Route key={v.path} path={v.path} component={v.component} />
-                        ))
-                    }
+                        <QueueAnim type="scaleX" duration={500}>
+                            {
+                                navList.map(v=>(
+                                    <Route key={v.path} path={v.path} component={v.component} />
+                                ))
+                            }
+                        </QueueAnim>
                     </Switch>
                 </div>
                 <NavLink data={navList}></NavLink>

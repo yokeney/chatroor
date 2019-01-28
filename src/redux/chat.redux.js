@@ -33,15 +33,17 @@ function msgList(msg,users,userid){
 function msgRead({from,userid,num}){
     return  {type:Msg_READ,payload:{from,userid,num}}
 }
+// async和await配合使用，await在async内部
 export function readMsg(from){
-    return (dispatch,getState)=>{
+    return async (dispatch,getState)=>{
+        const res= await axios.post('/user/readMsg',{from})
         const userid=getState().user._id;
-        axios.post('/user/readMsg',{from})
-        .then(res=>{
-            if (res.status===200 && res.data.code===0) {
-                dispatch(msgRead({userid,from,num:res.data.num}))
-            }
-        })
+        if (res.status===200 && res.data.code===0) {
+            dispatch(msgRead({userid,from,num:res.data.num}))
+        }
+        // .then(res=>{
+
+        // })
     }
 }
 export function sendMsg({from,to,msg}){
@@ -61,13 +63,13 @@ export function recvMsg(){
     }
 }
 export function getMsgList(){
-    return (dispatch,getState)=>{
-        axios.get('/user/getmsgList')
-        .then(res=>{
-            if (res.status===200 && res.data.code===0) {
-                const userid=getState().user._id;
-                dispatch(msgList(res.data.msg,res.data.users,userid))
-            }
-        })
+    return async (dispatch,getState)=>{
+        const res=await axios.get('/user/getmsgList')
+        if (res.status===200 && res.data.code===0) {
+            const userid=getState().user._id;
+            dispatch(msgList(res.data.msg,res.data.users,userid))
+        }
+        // .then(res=>{
+        // })
     }
 }
